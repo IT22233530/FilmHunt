@@ -15,18 +15,17 @@ const SearchResults = () => {
     const fetchSearchResults = async () => {
       try {
         setLoading(true);
-        const [moviesResponse, tvResponse] = await Promise.all([
+        const [moviesResponse ] = await Promise.all([
           axios.get(
             `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=a07097b1790ca0b3b085d11b7bf8aca4`
           ),
-          axios.get(
-            `https://api.themoviedb.org/3/search/tv?query=${query}&api_key=a07097b1790ca0b3b085d11b7bf8aca4`
-          ),
+          
         ]);
+        console.log(moviesResponse);
 
         const combinedResults = [
           ...moviesResponse.data.results.map(r => ({...r, type: 'movie'})),
-          ...tvResponse.data.results.map(r => ({...r, type: 'tv'}))
+
         ];
         setResults(combinedResults);
       } catch (error) {

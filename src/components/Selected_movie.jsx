@@ -18,6 +18,7 @@ const MovieDetails = () => {
           axios.get(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=a07097b1790ca0b3b085d11b7bf8aca4`),
           axios.get(`https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=a07097b1790ca0b3b085d11b7bf8aca4`)
         ]);
+        console.log(movieResponse);
 
         setMovie(movieResponse.data);
         setCast(castResponse.data.cast.slice(0, 8));
@@ -28,6 +29,7 @@ const MovieDetails = () => {
         setLoading(false);
       }
     };
+
 
     fetchMovieData();
   }, [movie_id]);
